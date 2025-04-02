@@ -1,0 +1,52 @@
+<div class="L_panel" id="DataMap_panel">
+  <div class="icon_back">
+    <a id="gohome" href="#" style="text-decoration: none">
+      <img src="images/back%20icon.svg" alt="回首頁" title="回首頁">
+    </a>
+  </div>
+  <div class="title_24px" id="DataMap_panel_text">全台數據</div>
+
+  <div>
+  <select class="select" id="DataMap_select">
+      <option value="acceptnum" selected>總收容數</option>
+      <option value="adoptrate">認養比率</option>
+      <option value="endnum">人道處理數量</option>
+      <option value="deadnum">已死亡數</option>
+    </select>
+  </div>
+    <div class="slidecontainer">
+      <input type="range" class="slider" id="DataMap_slider">
+      <p class="slider_text">年月: <span id="yeardemo"></span>
+      </p>
+    </div>
+  <div class="action-button" id="w_end">繪製地圖</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/js/w_endClick.js"></script>
+
+<!-- 縣市進階設定
+<div class="L_panel" id="DataMap_panel">
+  <div class="icon_back">
+    <a href="#" style="text-decoration: none">
+      <img src="images/back%20icon.svg" alt="回首頁" title="回首頁">
+    </a>
+  </div>
+  <div class="title_24px" id="DataMap_panel_text">縣市數據</div>
+  <div>
+    <p>請點選右方任一縣市</p>
+  </div>
+  <div><select class="select" id="DataMap_select">
+      <option selected="selected">收容所數據</option>
+      <option>數據1</option>
+      <option>數據2</option>
+      <option>數據3</option>
+      <option>數據4</option>
+    </select></div>
+  <div><input type="range" class="slider" id="DataMap_slider"></div>
+  <div>
+    <p class="slider_text">2019/01</p>
+  </div>
+  <div class="action-button" id="w_end">繪製地圖</div>
+</div>-->

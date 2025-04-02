@@ -1,0 +1,54 @@
+<div class="L_panel" id="DataMap_panel">
+    <div class="icon_back">
+      <a id="gohome" href="#" style="text-decoration: none">
+        <img src="images/back%20icon.svg" alt="回首頁" title="回首頁">
+      </a>
+    </div>
+    <div class="title_24px" id="DataMap_panel_text">收容認養搜尋</div>
+        <div class="search">
+          <input id="readtext" type="text" placeholder="目前所選範圍 :全台（右方地圖選擇）" readonly="readonly">
+          <a  href="#" style="text-decoration: none">
+            <button type="submit" id="adoptButton">
+            </button>
+          </a>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="checkbox_1" name="skill" value="貓" checked>
+          <label for="checkbox_1">貓</label>
+
+          <input type="checkbox" id="checkbox_2" name="skill" value="狗" checked>
+          <label for="checkbox_2">狗</label>
+
+          <input type="checkbox" id="checkbox_3" name="skill" value="公" checked>
+          <label for="checkbox_3">公</label>
+
+          <input type="checkbox" id="checkbox_4" name="skill" value="母" checked>
+          <label for="checkbox_4">母</label>
+          
+          <br>
+          
+          <input type="checkbox" id="checkbox_5" name="skill" value="幼" checked>
+          <label for="checkbox_5">幼年</label>
+
+          <input type="checkbox" id="checkbox_6" name="skill" value="成" checked>
+          <label for="checkbox_6">成年</label>
+          
+          <input type="checkbox" id="checkbox_7" name="skill" value="是" checked>
+          <label for="checkbox_7">結紮</label>
+
+          <input type="checkbox" id="checkbox_8" name="skill" value="否" checked>
+          <label for="checkbox_8">未結紮</label>
+        </div>
+         
+    <div class="action-button" id="w_end">依條件搜尋</div>
+  </div>
+  <div class="L_panel" id="AdoptResult_panel">
+    <div class="title_24px" id="DataMap_panel_text">搜尋結果</div>
+    <div id="search_result">
+      <div id="result"></div>
+    </div>
+  </div>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/js/resultClick.js"></script>
+<script src="/js/w_endClick.js"></script>

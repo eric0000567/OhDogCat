@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Oh!DogCat Map</title>
+  <link rel=stylesheet type="text/css" href="css/main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <meta charset="utf-8">
+</head>
+<body>
+  <div id="loading"></div>
+  <div id="myBar"></div>
+  
+  <div id="legend">
+    <div id="lev">max</div>
+    <div class="color-key"></div>
+    <div id="lev">min</div>
+  </div>
+  <div id="L_BG">
+    <div id="L-content">
+      <div class="L_top">
+        <div id="L_top_icon">
+          <img src="images/OhDogCat-Logo.svg">
+          <a style="text-decoration:none;" id="icon_text">
+            <p class="title_16px">Oh!DogCat</p>
+            <p class="title_12px">流浪動物數據地圖</p>
+          </a>
+        </div>
+        <div class="L_top" id="L_top_right">
+          <a id="home" href="#"><img src="images/index-icon.svg" alt="回首頁" title="回首頁" width="32px" height="32px">
+          </a>
+        </div>
+      </div>
+      <div class="L_mid">
+        <div class="L_mid_overall">
+          <a id="data" href="#" style="text-decoration: none">
+            <div id="L_mid_avatar_data"><img src="images/Data_icon.svg"/></div>
+          </a>
+          <p class="L_mid_text">數據地圖</p>
+        </div>
+        <div class="L_mid_overall">
+          <a id="adopt" href="#" style="text-decoration: none">
+            <div id="L_mid_avatar_adopt"><img src="images/Adoption_icon.svg"/></div>
+          </a>
+          <p class="L_mid_text">收容認養</p>
+        </div>
+        <div class="L_mid_overall">
+          <a id="lost" href="#" style="text-decoration: none">
+            <div id="L_mid_avatar_lost"><img src="images/Lost_icon.svg"/></div>
+          </a>
+          <p class="L_mid_text">遺失協尋</p>
+        </div>
+        <div class="L_mid_overall">
+          <a id="hospital" href="#" style="text-decoration: none">
+            <div id="L_mid_avatar_hospital"><img src="images/Hospitai_icon.svg"/></div>
+          </a>
+          <p class="L_mid_text">動物醫院</p>
+        </div>
+      </div>
+      <div class="L_Marquee">
+        <marquee class="title_16px" direction="left" scrollamount="8" behavior="scroll">【公告】 Oh!DogCat 網頁，BETA版本已上線囉~ 如果有任何問題請聯繫我們，謝謝</marquee>
+      </div>
+      <div id="mainpart">
+<!--            布告欄  -->
+        <div class="L_panel" id="board_panel">
+          <div class="title_24px" id="board_text">收容領養佈告欄</div>
+          <div id="adoptdiv" class="index_board">
+            <div id="adopt_pre">
+            </div>
+            <div id="adopt_side1">
+              <div class="card_ava"><img id="adopt_Introduction_1" src="" />
+              </div>
+              <p id="name1" class="card_text">
+              </p>
+              <div class="card_line"></div>
+            </div>
+            <div id="adopt_side2">
+              <div class="card_ava"><img id="adopt_Introduction_2" src="" />
+              </div>
+              <p id="name2" class="card_text">
+              </p>
+              <p class="card_line"></p>
+            </div>
+            <div id="adopt_side3">
+              <div class="card_ava"><img id="adopt_Introduction_3" src="" />
+              </div>
+              <p id="name3" class="card_text">
+              </p>
+              <p class="card_line"></p>
+            </div>
+            <div id="adopt_side4">
+              <div class="card_ava"><img id="adopt_Introduction_4" src="" />
+              </div>
+              <p id="name4" class="card_text">
+              </p>
+              <p class="card_line"></p>
+            </div>
+            <div id="adopt_side5">
+              <div class="card_ava"><img id="adopt_Introduction_5" src="" />
+              </div>
+              <p id="name5" class="card_text">
+              </p>
+              <p class="card_line"></p>
+            </div>
+            <div id="adopt_nex">
+            </div>
+
+          </div>
+        </div>
+        <div class="L_panel" id="board_panel">
+          <div class="title_24px" id="board_text">遺失協尋佈告欄</div>
+          <div class="index_board">
+            <div id="ass_pre">
+            </div>
+            <div id="ass_side1">
+              <div class="card_ava"><img id="ass_Introduction_1" src="" />
+              </div>
+              <p id="lname1"  class="card_text">
+              </p>
+              <p class="card_line"></p>
+            </div>
+            <div id="ass_side2">
+              <div class="card_ava"><img id="ass_Introduction_2" src="" />
+              </div>
+              <p id="lname2"  class="card_text">
+              </p>
+              <p class="card_line"></p>
+            </div>
+            <div id="ass_side3">
+              <div class="card_ava"><img id="ass_Introduction_3" src="" />
+              </div>
+              <p id="lname3"  class="card_text">
+              </p>
+              <p class="card_line"></p>
+            </div>
+            <div id="ass_side4">
+              <div class="card_ava"><img id="ass_Introduction_4" src="" style="max-height:96px; max-width:96px; border-radius: 50%;" />
+              </div>
+              <p id="lname4"  class="card_text">
+              </p>
+              <p class="card_line"></p>
+            </div>
+            <div id="ass_side5">
+              <div class="card_ava"><img id="ass_Introduction_5" src="" style="max-height:96px; max-width:96px;" /></div>
+              <p id="lname5"  class="card_text">
+              </p>
+              <div class="card_line"></div>
+            </div>
+            <div id="ass_nex">
+            </div>
+
+          </div>
+        </div>
+      </div>
+      
+      
+  <!--                                 數據                                      -->
+      <div id="datadiv">
+        <div class="L_panel" id="DataMap_panel">
+          <div class="icon_back">
+            <a class="gohome" href="#" onclick="gohome();" style="text-decoration: none">
+              <img src="images/back%20icon.svg" alt="回首頁" title="回首頁">
+            </a>
+          </div>
+          <div class="title_24px" id="DataMap_panel_text">全台數據</div>
+
+          <div>
+          <select class="select" id="DataMap_select">
+              <option value="acceptnum" selected>總收容數</option>
+              <option value="adoptrate">認養比率</option>
+              <option value="endnum">人道處理數量</option>
+              <option value="deadnum">已死亡數</option>
+            </select>
+          </div>
+            <div class="slidecontainer">
+              <input type="range" class="slider" id="DataMap_slider">
+              <p class="slider_text">年月: <span id="yeardemo"></span>
+              </p>
+            </div>
+          <div class="action-button" id="w_end" onclick="loadingshow();dataend();">繪製地圖</div>
+        </div>
+      </div>
+      
+      
+      
+      
+<!--                                 收容                                      -->
+      <div id="adoptdiv2">
+          <div class="L_panel" id="DataMap_panel">
+              <div class="icon_back">
+                <a class="gohome" href="#" onclick="gohome();" style="text-decoration: none">
+                  <img src="images/back%20icon.svg" alt="回首頁" title="回首頁">
+                </a>
+              </div>
+              <div class="title_24px" id="DataMap_panel_text">收容認養搜尋</div>
+                  <div class="search">
+                    <input class="readtext" type="text" placeholder="目前所選範圍 :全台（右方地圖選擇）" readonly="readonly">
+                    <a  href="#" style="text-decoration: none">
+                      <button type="submit" id="adoptButton">
+                      </button>
+                    </a>
+                  </div>
+                  <div class="checkbox">
+                    <input type="checkbox" id="checkbox_1" name="skill" value="貓" checked>
+                    <label for="checkbox_1">貓</label>
+
+                    <input type="checkbox" id="checkbox_2" name="skill" value="狗" checked>
+                    <label for="checkbox_2">狗</label>
+
+                    <input type="checkbox" id="checkbox_3" name="skill" value="公" checked>
+                    <label for="checkbox_3">公</label>
+
+                    <input type="checkbox" id="checkbox_4" name="skill" value="母" checked>
+                    <label for="checkbox_4">母</label>
+
+                    <br>
+
+                    <input type="checkbox" id="checkbox_5" name="skill" value="幼" checked>
+                    <label for="checkbox_5">幼年</label>
+
+                    <input type="checkbox" id="checkbox_6" name="skill" value="成" checked>
+                    <label for="checkbox_6">成年</label>
+
+                    <input type="checkbox" id="checkbox_7" name="skill" value="是" checked>
+                    <label for="checkbox_7">結紮</label>
+
+                    <input type="checkbox" id="checkbox_8" name="skill" value="否" checked>
+                    <label for="checkbox_8">未結紮</label>
+                  </div>
+
+              <div class="action-button" id="w_end"  onclick="loadingshow();adoptend();">依條件搜尋</div>
+            </div>
+            <div class="L_panel" id="AdoptResult_panel">
+              <div class="title_24px" id="DataMap_panel_text">搜尋結果</div>
+              <div class="search_result">
+                <div id="result"></div>
+              </div>
+            </div>
+      </div>
+      
+      
+      
+      
+      
+ <!--                                 遺失                                      -->     
+      <div id="lostdiv">
+        <div class="L_panel" id="DataMap_panel">
+            <div class="icon_back">
+              <a class="gohome" href="#" onclick="gohome();" style="text-decoration: none">
+                <img src="images/back%20icon.svg" alt="回首頁" title="回首頁">
+              </a>
+            </div>
+            <div class="title_24px" id="DataMap_panel_text">遺失協尋</div>
+                <div class="search">
+                  <input class="readtext" type="text" placeholder="目前所選範圍（右方地圖選擇）" readonly="readonly">
+                  <a href="#" style="text-decoration: none">
+                    <button type="submit" id="adoptButton">
+                    </button>
+                  </a>
+                </div>
+
+                <div class="search" id="search_lost">
+                  <input id="searchword" type="text" placeholder="輸入關鍵字、條件（例如：短毛、黑色）">
+                </div>
+
+                <div class="checkbox">
+                  <input type="checkbox" id="checkbox_9" name="lostskill" value="貓" checked>
+                  <label for="checkbox_9">貓</label>
+
+                  <input type="checkbox" id="checkbox_10" name="lostskill" checked value="狗" checked>
+                  <label for="checkbox_10">狗</label>
+
+                  <input type="checkbox" id="checkbox_11" name="lostskill" value="公" checked>
+                  <label for="checkbox_11">公</label>
+
+                  <input type="checkbox" id="checkbox_12" name="lostskill" value="母" checked>
+                  <label for="checkbox_12">母</label>
+
+                </div>
+
+            <div class="action-button" id="w_end"  onclick="loadingshow();lostend();">依條件搜尋</div>
+          </div>
+        <div class="L_panel" id="AdoptResult_panel">
+          <div class="title_24px" id="DataMap_panel_text">搜尋結果</div>
+          <div class="search_result">
+          </div>
+        </div>
+      </div>
+      
+<!--                                 醫院                                      -->
+      <div id="hospitaldiv">                                                  
+        <div class="L_panel" id="DataMap_panel">
+        <div class="icon_back">
+          <a class="gohome" href="#" onclick="gohome();" style="text-decoration: none">
+            <img src="images/back%20icon.svg" alt="回首頁" title="回首頁">
+          </a>
+        </div>
+        <div class="title_24px" id="DataMap_panel_text">動物醫院</div>
+          <div class="search">
+            <input class="readtext" type="text" placeholder="目前所選範圍（右方地圖選擇）" readonly="readonly">
+            <a href="#" style="text-decoration: none">
+              <button type="submit" id="adoptButton">
+              </button>
+            </a>
+        </div>
+         <div class="search" id="search_lost">
+          <input id="searchword2" type="text" placeholder="輸入關鍵字、條件（例如：地址,醫師名稱）">
+        </div>
+        <div class="action-button" id="w_end" onclick="hospitalend();">依條件搜尋</div>
+      </div>
+      <div class="L_panel" id="AdoptResult_panel">
+        <div class="title_24px" id="DataMap_panel_text">搜尋結果</div>
+        <div class="search_result">
+        </div>
+      </div>
+  </div>
+      
+    </div>
+  </div>
+
+  <!--   尚未完成 金門 連江
+   <input class="Islands" id="KinMen" type="button" style="background-image:url(images/KinMen.png)">
+
+  <input class="Islands" id="LienChiang" type="button" style="background-image:url(images/LienChiang.png)">
+-->
+  <div class="map_background">
+    <div id="map"></div>
+  </div>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3uyZWh_PFAINOlZ-0RWZzzLYN5vDIrjM&callback=initMap"></script>
+
+</body>
+  <script src="../ohdogcat/js/main.js"></script>
+  <script src="../ohdogcat/js/data.js"></script>
+  <script src="../ohdogcat/js/tabJs.js"></script>
+  <script src="../ohdogcat/js/AnimalRecognition.js"></script>
+  <script src="../ohdogcat/js/LostAnimal.js"></script>
+  <script src="../ohdogcat/js/veterinarian.js"></script>
+  <script src="../ohdogcat/js/w_endClick.js"></script>
+  <script src="../ohdogcat/js/JQUERYmain.js"></script>
+  <script src="../ohdogcat/js/resultClick.js"></script>
+  
+
+</html>

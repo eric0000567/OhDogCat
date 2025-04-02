@@ -1,0 +1,875 @@
+/* 版面歸0 */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* 滿版 */
+html,body {
+  height: 100%;
+  width: 100%;
+}
+
+/* 字體-GenSenMaruGothicTW */
+@font-face {
+  font-family: 'cwTeXYen';
+  font-weight: 500;
+  font-style: normal;
+  src: url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+  src: url(//fonts.gstatic.com/ea/cwtexyen/v3/cwTeXYen-zhonly.eot?#iefix) format('embedded-opentype'),
+    url(//fonts.gstatic.com/ea/cwtexyen/v3/cwTeXYen-zhonly.woff2) format('woff2'),
+    url(//fonts.gstatic.com/ea/cwtexyen/v3/cwTeXYen-zhonly.woff) format('woff'),
+    url(//fonts.gstatic.com/ea/cwtexyen/v3/cwTeXYen-zhonly.ttf) format('truetype');
+}
+
+/* 預設文字 */
+html {
+  font-family: "cwTeXYen";
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.title_8px {
+  font-size: 8px;
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+
+.title_12px {
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.title_16px {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.title_24px {
+  font-size: 24px;
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+
+
+/* 地圖設定 */
+
+#loading {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 999999;
+  background: #fff;
+  opacity: 0.3;
+}
+
+#myBar {
+  border: 5px solid;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border-color: green transparent transparent;
+  animation: spin 0.5s linear infinite;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 10099999;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+    filter: hue-rotate(360deg)
+  }
+}
+
+/* 右邊色票 */
+#legend {
+  position: fixed;
+  margin: auto;
+  top: 33vh;
+  right: 1%;
+  height: 33vh;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+}
+
+#lev {
+  text-align: center;
+  height: 20px;
+  flex: 0.1;
+  display: flex;
+}
+
+.color-key {
+  background: linear-gradient(to bottom,
+      hsl(150, 25%, 15%) 0%,
+      hsl(150, 25%, 25%) 17%,
+      hsl(150, 25%, 35%) 33%,
+      hsl(150, 25%, 45%) 50%,
+      hsl(150, 25%, 60%) 67%,
+      hsl(150, 25%, 70%) 83%,
+      hsl(150, 25%, 90%) 100%);
+  flex: 10;
+  -webkit-box-flex: 1;
+  margin: 0 5px;
+  text-align: center;
+  font-size: 1.0em;
+  line-height: 1.0em;
+  display: flex;
+}
+
+/* 地圖背景 */
+
+body {
+  display: table;
+  overflow: hidden;
+  *zoom: 1;
+}
+
+.map_background {
+  height: 100%;
+  margin-left: 392px;
+  background-color: aqua;
+  z-index: 1;
+}
+
+/* 地圖設定 */
+#map {
+  height: 100%;
+  width: inherit;
+}
+
+/* 左底板 */
+#L_BG {
+  float: left;
+  display: table-cell;
+  background-color: #fff;
+  border-radius: 0px 16px 0px 0px;
+  height: 100%;
+  width: 392px;
+  z-index: 0;
+  overflow-y: auto;
+}
+
+/* 離島面板 */
+
+.Islands{
+  width: 84px;
+  height: 84px;
+  z-index: 9999;
+  border: solid 4px rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.Islands:hover{
+  opacity: 1;
+}
+
+#KinMen{
+  position:absolute;
+  left: 408px;
+  bottom: 108px;
+}
+
+#LienChiang{
+  position:absolute;
+  left: 408px;
+  bottom: 16px;
+}
+
+/* 返回鍵 */
+
+.gohome {
+  position: absolute;
+  height: 34px;
+  z-index: 3;
+}
+/* 左面板 */
+#L-content {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+/* css滾動條選擇器 */
+#L-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* 左內容上層 */
+.L_top {
+  height: 72px;
+  background-color: #fff;
+}
+
+
+#L_top_icon {
+  height: 32px;
+  float: left;
+  margin: 16px 4px 8px 19px;
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
+}
+
+#icon_text {
+  margin-left: 4px;
+}
+
+#L_top_right {
+  float: right;
+  margin: 16px 24px 0px 0px;
+}
+
+/* 左內容中層 */
+.L_mid {
+  width: 328px;
+  height: 82px;
+  margin: 0 32px 16px 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.L_mid_overall {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* 中層頭像 */
+#L_mid_avatar_data,
+#L_mid_avatar_adopt,
+#L_mid_avatar_lost,
+#L_mid_avatar_hospital {
+  opacity: 0.6;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  transition: background 0.1s linear, border-radius 0.2s ease-in 0.1s;
+}
+
+/* 中層頭像特效 */
+
+#L_mid_avatar_data:hover,
+#L_mid_avatar_adopt:hover,
+#L_mid_avatar_lost:hover,
+#L_mid_avatar_hospital:hover {
+  opacity: 0.5;
+}
+
+
+/* 中層頭像文字 */
+.L_mid_text {
+  width: auto;
+  margin-top: 8px;
+  color: rgb(0, 0, 0, 0.6)
+}
+
+/*跑馬燈*/
+.L_Marquee {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  margin: 0 32px 16px 32px;
+  background-color: #D8D8D8;
+  border-radius: 8px;
+  line-height: 40px;
+}
+
+/*基本面板*/
+
+.L_panel {
+  width: 328px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  background-color: #ffffff;
+  margin: 0px 32px 16px 32px;
+}
+
+
+/* ===首頁佈告欄=== */
+
+/* 布告欄地基 */
+#board_panel {
+  height: 256px;
+}
+
+#board_text {
+  padding-top: 16px;
+  margin-top: 16px;
+}
+
+/* 卡片內容 */
+
+#adopt_Introduction_1,
+#adopt_Introduction_2,
+#adopt_Introduction_3,
+#adopt_Introduction_4,
+#adopt_Introduction_5,
+#ass_Introduction_1,
+#ass_Introduction_2,
+#ass_Introduction_3,
+#ass_Introduction_4,
+#ass_Introduction_5 {
+  margin-top: 16px ;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.card_text {
+  margin: 4px auto;
+  width: 100%;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.card_line {
+  background-color: #d8d8d8;
+  width: 100px;
+  height: 4px;
+  border-radius: 3px;
+  margin: 4px auto;
+}
+
+/* 卡片輪播特效 */
+.index_board {
+  width: 100%;
+  position: relative;
+  left: 80px;
+  margin-top: 24px;
+}
+
+#adopt_side1,
+#adopt_side2,
+#adopt_side3,
+#adopt_side4,
+#adopt_side5,
+#ass_side1,
+#ass_side2,
+#ass_side3,
+#ass_side4,
+#ass_side5 {
+
+  background-color: #ffffff;
+  height: 160px;
+  width: 160px;
+  position: absolute;
+  border-radius: 32px;
+  transition: all .2s;
+  opacity: 0.6;
+  border: solid 4px rgba(0, 0, 0, 0.25);
+}
+
+/*卡片1-5張*/
+#adopt_side1,
+#ass_side1 {
+  transform: translateX(0px) scale(1.1);
+  z-index: 99;
+  border: solid 4px rgba(141, 141, 141, 1);
+  opacity: 1;
+}
+
+#adopt_side2,
+#ass_side2 {
+  transform: translateX(-40px);
+  z-index: 9;
+}
+
+#adopt_side3,
+#ass_side3 {
+  transform: translateX(40px);
+  z-index: 9;
+}
+
+#adopt_side4,
+#ass_side4 {
+  transform: translateX(-70px) scale(1);
+  z-index: 8;
+}
+
+#adopt_side5,
+#ass_side5 {
+  transform: translateX(70px) scale(1);
+  z-index: 8;
+}
+
+/* 上一張，下一張按鈕 */
+#adopt_pre,
+#ass_pre {
+  height: 160px;
+  width: 60px;
+  position: absolute;
+  transform: translateX(-70px);
+  z-index: 999;
+
+}
+
+#adopt_pre:hover {
+  cursor: pointer;
+}
+
+#ass_pre:hover {
+  cursor: pointer;
+}
+
+#adopt_nex,
+#ass_nex {
+  height: 170px;
+  width: 60px;
+  position: absolute;
+  transform: translateX(178px);
+  z-index: 999;
+}
+
+#adopt_nex:hover {
+  cursor: pointer;
+}
+
+#ass_nex:hover {
+  cursor: pointer;
+}
+
+
+/*DataMap==========================================*/
+#DataMap_panel {
+  position: relative;
+  height: auto;
+  padding-bottom: 16px;
+}
+
+/* 上表格返回按鈕 */
+
+.icon_back {
+  position: absolute;
+  padding: 8px 0 0 8px;
+  float: left;
+  cursor: pointer;
+}
+
+/* 表格文字設定 */
+#DataMap_panel_text {
+  position: relative;
+  padding-top: 16px;
+}
+
+/*下拉選單*/
+#DataMap_select {
+  margin: 16px 32px;
+}
+
+.select {
+  /*移除箭頭樣式*/
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  /*改變右邊箭頭樣式*/
+  background: url(../images/arrow.svg) no-repeat right center transparent;
+  border: 2px solid gray;
+  border-radius: 3px;
+  width: 264px;
+  height: 32px;
+  padding-left: 8px;
+  padding-right: 40px;
+  background-color: #F6F7F7;
+  color: rgb(0, 0, 0, 0.4);
+}
+
+/*IE隱藏箭頭樣式*/
+.select::-ms-expand {
+  display: none;
+}
+
+.select:focus {
+  box-shadow: 0 0 5px 2px #467BF4;
+}
+
+
+
+/* 時間軸 */
+#DataMap_slider {
+  width: 264px;
+  margin: 0px 32px;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: #979797;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #d8d8d8;
+  border: solid 3px #979797;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider_text {
+  float: left;
+  font-size: 16px;
+  margin: 8px 32px;
+}
+
+/* 發送按鈕 */
+
+.action-button {
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+  width: 120px;
+  padding: 8px;
+  margin: 0px 10px 10px 0px;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #FFF;
+  text-decoration: none;
+  background-color: RGB(0, 0, 0, 0.6);
+  border-bottom: 5px solid #555;
+  text-shadow: 0px -2px #555;
+}
+
+.action-button:active {
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  border-bottom: 1px solid;
+}
+.slidecontainer{
+  margin-bottom: 32px;
+}
+#w_end {
+  margin: 0px auto;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* 縣市卡片 */
+.Introduction_card {
+  width: 248px;
+  height: auto;
+  text-align: center;
+  border-radius: 16px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  background-color: #ffffff;
+  z-index: 9999;
+  padding: 24px;
+  position: absolute;
+  top: 16px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+/* 卡片關閉按鈕 */
+#Introduction_close {
+  position: absolute;
+  left: 248px;
+  top: 12px;
+  cursor: pointer;
+}
+
+/* 卡片標題文字 */
+.Introduction_text {
+  cursor: move;
+  font-weight: 800;
+  font-size: 24px;
+  color: rgb(0,0,0,0.6)
+}
+
+/* 隻數文字 */
+#Introduction_acount {
+  font-size: 16px;
+  color: rgb(0,0,0,0.4);
+  margin-bottom: 8px;
+}
+
+/* 圖表容器 */
+#tabs-nav {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  text-align: center;
+}
+
+a.tabs-menu {
+  display: inline-block;
+  font-size: 12px;
+  color: rgb(0,0,0,0.4);
+  padding: 5px 10px;
+  font-weight: bold;
+  text-decoration: none;
+  border: solid 2px rgb(0,0,0,0.4);
+  border-bottom: 0;
+  border-radius: 4px 4px 0 0;
+  margin: 0px 2px;
+}
+
+a.tabs-menu.tabs-menu-active {
+  background-color: rgb(0, 0, 0, 0.1);
+  text-shadow: 1px 1px 0px #fff;
+  border: solid 2px #555;
+  color: #555;
+  border-bottom: 0;
+}
+
+.tabs-container {
+  border: solid 2px #555;
+  border-radius: 8px;
+  margin-top: -0.1px;
+  background-color: rgb(0, 0, 0, 0.0);
+  overflow: hidden;
+  width: auto;
+}
+
+.tabs-panel {
+  display: none;
+  min-height: 129px;
+  overflow: auto;
+  padding: 10px;
+  max-height: 200px;
+  margin: 0px auto;
+}
+
+
+/*領養收容===============================*/
+
+#adopt_panel {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 16px;
+}
+
+.search {
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  width: auto;
+  height: 38px;
+  margin: 16px 32px;
+}
+
+#search_lost {
+  margin-top: 0;
+}
+
+#search_lost input {
+  width: 264px;
+}
+
+
+.search input {
+  height: 30px;
+  width: 211px;
+  padding: 4px 8px;
+  outline: none;
+  border-radius: 4px 0px 0px 4px;
+  border: solid 1px #bec0c2;
+  background-color: #ffffff;
+  cursor: auto;
+}
+
+/* 定位按鈕 */
+#adoptButton {
+  width: 43px;
+  height: 40px;
+  padding: 0px;
+  margin-left: -1px;
+  color: inherit;
+  border: 0px none;
+  background-image: url(../images/Positioning.svg);
+  cursor: pointer;
+}
+
+#adoptButton:hover {
+  opacity: 0.8;
+}
+
+/* 多選框 */
+.checkbox {
+  margin: 0px 32px 16px 32px;
+}
+
+.checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox input[type="checkbox"] + label {
+  display: inline-block;
+  background-color: #666;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 8px 12px;
+  opacity: 0.6;
+  margin: 4px 0px
+}
+
+.checkbox input[type="checkbox"]:checked + label {
+  opacity: 1;
+}
+
+/* 認養搜尋結果===================================== */
+
+/* 搜尋結果對齊方式 */
+#adopt_result_wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* 背景模板 */
+#AdoptResult_panel {
+  width: 328px;
+  height: 400px;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: center;
+  overflow-y: scroll;
+}
+
+/* 滾輪樣式隱藏 */
+#AdoptResult_panel::-webkit-scrollbar {
+  display: none;
+}
+
+/* 最近收容所資訊 */
+.card_hospitai {
+  width: 256px;
+  height: auto;
+  margin: 0px auto 8px auto;
+  border-radius: 16px;
+  border: solid 4px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  padding: 14px 8px
+}
+
+/* 提示框文字 */
+
+#tip_1 {
+  margin: 2px auto 2px auto;
+}
+
+/* 搜尋結果圖示面板 */
+.search_result {
+  width: 280px;
+  height: 100%;
+  margin: 16px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-radius: 50
+}
+
+/* 圖示 */
+.result {
+  background-color: #ffffff;
+  height: 128px;
+  width: 128px;
+  border: solid 4px rgba(0, 0, 0, 0.4);
+  border-radius: 24px;
+  text-align: center;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+/* 圖示頭像 */
+.result_ava {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 8px 24px;
+  object-fit: cover;
+}
+
+#adopt_result_Introduction_1{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* 圖示底線 */
+.result_line {
+  background-color: #d8d8d8;
+  width: 96px;
+  height: 4px;
+  border-radius: 3px;
+  margin: 4px 16px
+}
+
+/* 動物拖曳小卡 */
+#Introduction_acount_adopt{
+  margin-bottom: 4px;
+}
+
+#card_line_adopt {
+  width: auto;
+}
+
+#adopt_result_Introduction_2{
+  height: 128px;
+  width: 128px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 8px 0px 4px 0px;
+}
+
+#Introduction_acount_line{
+  width: auto;
+  text-align: center;
+}
+
+#Introduction_acount_content{
+  padding: 12px;
+  text-align: left;
+  line-height: 24px;
+}
+
+#Introduction_acount_add{
+  margin-bottom: 8px;
+}
+
+#card_map{
+  margin-top: 8px;
+  border-radius: 16px;
+  border: solid 4px rgba(0, 0, 0, 0.25);
+}

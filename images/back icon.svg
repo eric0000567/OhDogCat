@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="34px" viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>back (round)</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Map" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Web/Lost/results" transform="translate(-46.000000, -341.000000)">
+            <g id="收容/搜尋結果" transform="translate(33.000000, 329.000000)">
+                <g id="Navigation-button/Back-circle" transform="translate(13.000000, 12.000000)">
+                    <circle id="Oval-8" stroke="#B7BBC0" stroke-width="1" fill="#FFFFFF" fill-rule="evenodd" cx="17" cy="17" r="16.5"></circle>
+                    <polyline id="Shape-3" stroke="#D0D2D3" stroke-width="2" points="19.2 11 13 17.2 19.2 23.5"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
